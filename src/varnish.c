@@ -170,10 +170,16 @@ static int varnish_monitor(void *priv,
                            const struct VSC_point *const pt) /* {{{ */
 >>>>>>> 3c42182e... varnish-cache-5.2 compatibility
 {
+<<<<<<< HEAD
 	uint64_t val;
 	const user_config_t *conf;
 	const char *class;
 	const char *name;
+=======
+  uint64_t val;
+  const user_config_t *conf;
+  const char *name;
+>>>>>>> 68123637... varnish plugin: avoid unused variable in V5 block
 
 	if (pt == NULL)
 		return (0);
@@ -193,9 +199,9 @@ static int varnish_monitor(void *priv,
   strcpy(namebuff, c + 1);
   name = namebuff;
 
-  (void)class;
-
 #elif HAVE_VARNISH_V4
+  const char *class;
+
   class = pt->section->fantom->type;
   name = pt->desc->name;
 >>>>>>> 3c42182e... varnish-cache-5.2 compatibility
@@ -204,8 +210,15 @@ static int varnish_monitor(void *priv,
 		return (0);
 
 #elif HAVE_VARNISH_V3
+<<<<<<< HEAD
 	class = pt->class;
 	name  = pt->name;
+=======
+  const char *class;
+
+  class = pt->class;
+  name = pt->name;
+>>>>>>> 68123637... varnish plugin: avoid unused variable in V5 block
 
 	if (strcmp(class, "") != 0)
 		return (0);
