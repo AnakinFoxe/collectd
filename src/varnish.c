@@ -200,6 +200,7 @@ static int varnish_monitor(void *priv,
   name = namebuff;
 
 #elif HAVE_VARNISH_V4
+<<<<<<< HEAD
   const char *class;
 
   class = pt->section->fantom->type;
@@ -208,20 +209,32 @@ static int varnish_monitor(void *priv,
 
 	if (strcmp(class, "MAIN") != 0)
 		return (0);
+=======
+  if (strcmp(pt->section->fantom->type, "MAIN") != 0)
+    return 0;
+>>>>>>> 8192bfcf... varnish plugin: Avoid unused variable even harder.
 
+  name = pt->desc->name;
 #elif HAVE_VARNISH_V3
+<<<<<<< HEAD
 <<<<<<< HEAD
 	class = pt->class;
 	name  = pt->name;
 =======
   const char *class;
+=======
+  if (strcmp(pt->class, "") != 0)
+    return 0;
+>>>>>>> 8192bfcf... varnish plugin: Avoid unused variable even harder.
 
-  class = pt->class;
   name = pt->name;
+<<<<<<< HEAD
 >>>>>>> 68123637... varnish plugin: avoid unused variable in V5 block
 
 	if (strcmp(class, "") != 0)
 		return (0);
+=======
+>>>>>>> 8192bfcf... varnish plugin: Avoid unused variable even harder.
 #endif
 
 <<<<<<< HEAD
