@@ -141,7 +141,8 @@ build_cygwin()
       --datarootdir="${DATADIR}" \
       --disable-all-plugins \
       --host="mingw32" \
-      --enable-logfile
+      --enable-logfile \
+      --enable-wmi
 
     cp ${GNULIB_DIR}/../config.h src/gnulib_config.h
     echo "#include <config.h.in>" >> src/gnulib_config.h
