@@ -263,6 +263,13 @@ collectd_LDADD = \
 	$(COMMON_LIBS) \
 	$(DLOPEN_LIBS)
 
+if BUILD_WIN32
+collectd_SOURCES += src/daemon/collectd_windows.c
+collectd_LDFLAGS += -Wl,--out-implib,libcollectd.a
+else
+collectd_SOURCES += src/daemon/collectd_linux.c
+endif
+
 if BUILD_FEATURE_DAEMON
 collectd_CPPFLAGS += -DPIDFILE='"${localstatedir}/run/${PACKAGE_NAME}.pid"'
 endif
@@ -272,10 +279,6 @@ endif
 if BUILD_WITH_LIBSTATGRAB
 collectd_CFLAGS += $(BUILD_WITH_LIBSTATGRAB_CFLAGS)
 collectd_LDADD += $(BUILD_WITH_LIBSTATGRAB_LDFLAGS)
-endif
-
-if BUILD_WIN32
-collectd_LDFLAGS += -Wl,--out-implib,libcollectd.a
 endif
 
 collectdmon_SOURCES = src/collectdmon.c
